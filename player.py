@@ -1,15 +1,20 @@
 import os
 
 class Player:
-    def __init__(self, startfunds, spinval):
-        self.account = startfunds
+    def __init__(self, spinval):
+        self.account = 0
         self.spinval = spinval
         self.lines = 20
         self.spinc = 0  # spin count
         self.totalwon = 0  # total won
         self.totalbet = 0  # total bet
-        self.highbank = startfunds  # highest bank point
+        self.highbank = 0
         self.highwin = 0
+
+    def funds(self, funds):  # add funds to player
+        self.account = funds
+        self.highbank = self.account  # highest bank point
+
 
     def checkplay(self):
         tmp = self.spinval * self.lines
@@ -22,7 +27,8 @@ class Player:
         return self.spinval
 
     def drawplayer(self):
-        print("Bank: {0:.2f}".format(self.account))
+        return print("[ Bank: £{0:,.2f}   Stake: £{1:,.2f} ]".format(self.account, (self.spinval * self.lines) ))
+
 
     def update(self, won, winlines):
         self.account = self.account - (self.spinval * self.lines)
@@ -35,17 +41,17 @@ class Player:
             self.highbank = self.account
         if self.highwin < won:
             self.highwin = won
-        print("Won: {0:.2f}".format(won), end="")
+        print("[ Won: {0:,.2f}".format(won), end="")
         if winlines:
-            print(" on {} lines".format(winlines))
+            print(" on {} lines ]".format(winlines))
         else:
-            print("")
-        self.drawplayer()
+            print(" ]")
+            #self.drawplayer()
+        return
 
     def endreport(self):
-        os.system("clear")
         print("Total Spins: {}".format(self.spinc))
-        print("Total Won: {0:.2f}".format(self.totalwon))
-        print("Total Bet: {0:.2f}".format(self.totalbet))
-        print("Biggest Bank: {0:.2f}".format(self.highbank))
-        print("Biggest Win: {0:.2f}".format(self.highwin))
+        print("Total Won: £{0:,.2f}".format(self.totalwon))
+        print("Total Bet: £{0:,.2f}".format(self.totalbet))
+        print("Biggest Bank: £{0:,.2f}".format(self.highbank))
+        print("Biggest Win: £{0:,.2f}".format(self.highwin))

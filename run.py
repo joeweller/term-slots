@@ -9,6 +9,7 @@ def main():
     return 1
 
 def play():
+    _=os.system("clear")
     print("Welcome to Term")
     print("\
  _______  _        _______ _________ _______\n\
@@ -20,20 +21,24 @@ def play():
 /\____) || (____/\| (___) |   | |   /\____) |\n\
 \_______)(_______/(_______)   )_(   \_______) !\n\
                                              ")
-    p = Player(checkfl(input("Enter starting amount:")), .05)
+    p = Player(.05)
+    p.funds(checkfl(input("Enter starting amount: £")))
     d = Slot(p)
     while True:
         if p.checkplay():
-            tmp = input("\'r\' Rules \'p\' Pay Lines \'q\' Quit | \'enter\' to Spin\n-")
+            tmp = input("\n\'r\' Rules \'p\' Pay Lines \'q\' Quit | \'enter\' to Spin\n- ")
             #tmp = input("Spin Again? (\"q\" to exit)")
             if tmp == "p":
                 d.print_win_lines()
             if tmp != "q":
                 os.system("clear")
+                print("")
                 d.draw()
             else:
+                os.system("clear")
                 break
         else:
+            os.system("clear")
             print("Game over!")
             break
     p.endreport()
@@ -183,13 +188,15 @@ class Slot:
         #    return "Jackpot"
 
     def draw(self):
+        """Draw the slot grid from randomised numbers characters.
+        send results to calcu to update player"""
         self.vals = randomise()
-        #  print(vals)
-        print("---------------------")
+        self.player.drawplayer()
+        print("     ---------------------")
         for i in range(3):  # print grid
-            print("| {} | {} | {} | {} | {} |".format(self.vals[i][0], self.vals[i][1],
+            print("     | {} | {} | {} | {} | {} |".format(self.vals[i][0], self.vals[i][1],
                 self.vals[i][2], self.vals[i][3], self.vals[i][4]))
-            print("---------------------")
+            print("     ---------------------")
         self.calcu()
 
     def menu(self):
