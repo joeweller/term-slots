@@ -1,3 +1,3 @@
 # Term Slots
-A simple Linux Terminal Slot game, played with fictitious currency in the terminal
+A simple Linux Terminal Slot game, played with fictitious currency in the terminal.\\n
 Currently in early stages of development, but currently playable. No bugs seen yet.

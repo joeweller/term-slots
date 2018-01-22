@@ -9,7 +9,7 @@ def main():
     return 1
 
 def play():
-    _=os.system("clear")
+    os.system("clear")
     print("Welcome to Term")
     print("\
  _______  _        _______ _________ _______\n\
