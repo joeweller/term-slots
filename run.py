@@ -46,6 +46,7 @@ def play():
     # randomise()
 
 def menu():
+    main = "(0) Add Funds TODO\n(1) Change Stake TODO\n(3) Winlines"
     while True:
         tmp = input(":")
 
